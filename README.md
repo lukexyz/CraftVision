@@ -3,7 +3,10 @@ Craft brewery identifier and critic.
 
 
 ## Installation from aws Deep Learning AMI
+`Deep Learning AMI (Ubuntu) Version 22.0`, GPU `p2.xlarge` or larger, spot instance :ballot_box_with_check:, `100 GB`
 
+##### SSH into new linux box, activate pytorch conda environment
+    $ ssh -i "<key>.pem" ubuntu@ec2-<public-ip>.us-east-2.compute.amazonaws.com
     $ source activate pytorch_p36
     
 ##### Clone and install requirements
