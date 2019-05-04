@@ -1,5 +1,5 @@
 # CraftVision
-Craft brewery identifier and critic (AR)
+Craft brewery identifier and critic.
 
 
 ## Installation from aws Deep Learning AMI
@@ -7,8 +7,8 @@ Craft brewery identifier and critic (AR)
     $ source activate pytorch_p36
     
 ##### Clone and install requirements
-    $ git clone https://github.com/eriklindernoren/PyTorch-YOLOv3
-    $ cd PyTorch-YOLOv3/
+    $ git clone https://github.com/lukexyz/CraftVision.git
+    $ cd CraftVision
     $ sudo pip3 install -r requirements.txt
 
 ##### Download pretrained weights
