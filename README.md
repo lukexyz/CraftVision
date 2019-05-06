@@ -1,6 +1,13 @@
 # CraftVision
 Craft brewery identifier and critic.
 
+TODO:
+1. :white_check_mark: Get Fastai custom dataset trained for labels
+2. :white_check_mark: Get YOLOv3 implementation running
+3. Extract bottle bounding boxing from YOLOv3 and send them to the brand classifier CNN
+4. Improve HUD visuals when critic score is returned and displayed about beverage
+4. Get this all running. Video first fine, the video stream
+
 
 ## Installation from aws
 `Deep Learning AMI (Ubuntu) Version 22.0`, GPU `p2.xlarge` or larger, spot instance :ballot_box_with_check:, `100 GB`
