@@ -1,6 +1,5 @@
 """
 Module version of ./detect.py
-
 """
 
 from __future__ import division
@@ -26,6 +25,11 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.ticker import NullLocator
 
+from fastai.vision import load_learner, open_image
+from pathlib import Path
+
+# path = 'data/images/bottle.JPG'
+# img = np.array(Image.open(path))
 
 def detector(opt, **kwargs):
     """
@@ -45,26 +49,32 @@ def detector(opt, **kwargs):
     print("="*60)
     print(" "*20, "STARTING DETECTOR")
     print("="*60, '\n')
-
+    
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
     os.makedirs("output", exist_ok=True)
 
-    # Set up model
-    model = Darknet(opt.model_def, img_size=opt.img_size).to(device)
+    # -------------------- LOAD CLASSIFICATION MODEL ------------------- #
+    # Fastai craft brands
+    c_path = Path('data/training')
+    learn = load_learner(c_path)
+    # ------------------------------------------------------------------ #
+    
 
+    # --------------------- LOAD SEGMENTAION MODEL --------------------- #
+    # Pytorch yolov3
+    model = Darknet(opt.model_def, img_size=opt.img_size).to(device)
     print(opt.model_def)
     # return None
-    
     if opt.weights_path.endswith(".weights"):
         # Load darknet weights
         model.load_darknet_weights(opt.weights_path)
     else:
         # Load checkpoint weights
         model.load_state_dict(torch.load(opt.weights_path))
-
     model.eval()  # Set in evaluation mode
-
+    # ------------------------------------------------------------------ #
+    
+    
     dataloader = DataLoader(
         ImageFolder(opt.image_folder, img_size=opt.img_size),
         batch_size=opt.batch_size,
@@ -101,16 +111,17 @@ def detector(opt, **kwargs):
         img_detections.extend(detections)
 
     # Bounding-box colors
-    cmap = plt.get_cmap("tab20b")
+    cmap = plt.get_cmap("hsv")
     colors = [cmap(i) for i in np.linspace(0, 1, 20)]
 
-    print("\nSaving images:")
+    print("\nIterating images:")
     # Iterate through images and save plot of detections
     for img_i, (path, detections) in enumerate(zip(imgs, img_detections)):
 
         print("(%d) Image: '%s'" % (img_i, path))
 
         # Create plot
+        print(path)
         img = np.array(Image.open(path))
         plt.figure()
         fig, ax = plt.subplots(1)
@@ -131,9 +142,22 @@ def detector(opt, **kwargs):
 
                 print("\t+ Label: %s, Conf: %.5f" % (classes[int(cls_pred)], cls_conf.item()))
 
+                # ========================== Classify Image ============================== #
+                x1, y1, x2, y2 = [int(x) for x in [x1, y1, x2, y2]]
+                crop_img = img[y1:y2, x1:x2]               
+                
+                # Convert cropped np arrary to fastai img for learner
+                crop_img = Image.fromarray(crop_img)
+                crop_img.save("data/training/temp/_.jpeg") 
+                crop_img = open_image("data/training/temp/_.jpeg")  # not proud
+                
+                # Send to classifier
+                b_pred, pred_idx, outputs = learn.predict(crop_img)
+                
+                # ======================================================================== #
+                
                 box_w = x2 - x1
                 box_h = y2 - y1
-
                 color = bbox_colors[int(np.where(unique_labels == int(cls_pred))[0])]
                 # Create a Rectangle patch
                 bbox = patches.Rectangle((x1, y1), box_w, box_h, linewidth=2, edgecolor=color, facecolor="none")
@@ -143,27 +167,31 @@ def detector(opt, **kwargs):
                 plt.text(
                     x1,
                     y1,
-                    s= str(det_i) + "." + classes[int(cls_pred)],
+                    s = str(det_i) + "." + classes[int(cls_pred)] + '\n' + str(b_pred),
                     color="white",
                     verticalalignment="top",
-                    bbox={"color": color, "pad": 0},
-                )
+                    bbox={"color": color, "pad": 0})
+                
+
+                
+                
 
         # Save generated image with detections
         plt.axis("off")
         plt.gca().xaxis.set_major_locator(NullLocator())
         plt.gca().yaxis.set_major_locator(NullLocator())
-        filename = path.split("/")[-1].split(".")[0]
-        plt.savefig(f"output/{filename}.png", bbox_inches="tight", pad_inches=0.0)
+        if opt.save_fig:
+            filename = path.split("/")[-1].split(".")[0]
+            plt.savefig(f"output/{filename}.png", bbox_inches="tight", pad_inches=0.0)
         if opt.show_img:
             plt.show()
-        plt.close()
+        #plt.close()
+        
+        
+        
+        
+        
+       
+        
     
     return imgs, img_detections
-        
-        
-        
-        
-        
-        
-        
