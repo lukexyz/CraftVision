@@ -4,9 +4,10 @@ Craft brewery identifier and critic.
 1. :white_check_mark: Get Fastai custom dataset trained for labels
 2. :white_check_mark: Get YOLOv3 implementation running
 3. :white_check_mark: Extract bottle bounding boxing from YOLOv3 and send them to the brand classifier CNN
-4. Improve HUD visuals when critic score is returned and displayed about beverage
+4. Run repo from `WSL` for development and use `aws` GPUs for training 
+5. Improve HUD visuals when critic score is returned and displayed about beverage
     - Resize image output so text is readable
-4. Create loop for video stream rather than static image
+6. Create loop for video stream rather than static image
 
 
 ## Installation from aws
