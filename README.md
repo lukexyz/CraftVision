@@ -5,9 +5,10 @@ Craft brewery identifier and critic.
 2. :white_check_mark: Get YOLOv3 implementation running
 3. :white_check_mark: Extract bottle bounding boxing from YOLOv3 and send them to the brand classifier CNN
 4. Run repo from `WSL` for development and use `aws` GPUs for training 
-5. Improve HUD visuals when critic score is returned and displayed about beverage
+5. Run on saved video and tune up for real-time stream later
+6. Improve HUD visuals when critic score is returned and displayed about beverage
     - Resize image output so text is readable
-6. Create loop for video stream rather than static image
+7. Create loop for video stream rather than static image
 
 
 ## Installation from aws
