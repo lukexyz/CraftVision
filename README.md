@@ -4,8 +4,8 @@ Craft brewery identifier and critic.
 1. :white_check_mark: Get Fastai custom dataset trained for labels
 2. :white_check_mark: Get YOLOv3 implementation running
 3. :white_check_mark: Extract bottle bounding boxing from YOLOv3 and send them to the brand classifier CNN
-4. Run repo from `WSL` for development and use `aws` GPUs for training 
-5. Run on saved video and tune up for real-time stream later
+4. :white_check_mark: Run repo from `WSL` for development and use `aws` GPUs for training 
+5. :white_check_mark: Run on saved video and tune up for real-time stream later
 6. Improve HUD visuals when critic score is returned and displayed about beverage
     - Resize image output so text is readable
 7. Create loop for video stream rather than static image
@@ -34,3 +34,7 @@ Craft brewery identifier and critic.
 Access notebooks through a browser with the aws public IPv4 address (found in ec2 instance console), not the private IP as shown in the notebook terminal. Do use the provided token from the terminal.
 
     http://<public IP>:8888/?token=<paste token here>
+
+<p align="center">
+  <img width="403" height="733" src="https://github.com/lukexyz/CraftVision/blob/master/output/craftvision_detector_3.PNG?raw=true">
+</p>
