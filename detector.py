@@ -51,6 +51,7 @@ def detector(opt, **kwargs):
     print("="*60, '\n')
     
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    print(f"Device: {device}")
     os.makedirs("output", exist_ok=True)
 
     # -------------------- LOAD CLASSIFICATION MODEL ------------------- #
@@ -139,8 +140,7 @@ def detector(opt, **kwargs):
             detections = sorted(detections, key=lambda x: int(x[0]))
             
             for det_i, (x1, y1, x2, y2, conf, cls_conf, cls_pred) in enumerate(detections):
-
-                print("\t+ Label: %s, Conf: %.5f" % (classes[int(cls_pred)], cls_conf.item()))
+                if cls_pred != 39: continue  # Skip non-bottles
 
                 # ========================== Classify Image ============================== #
                 x1, y1, x2, y2 = [int(x) for x in [x1, y1, x2, y2]]
@@ -148,14 +148,13 @@ def detector(opt, **kwargs):
                 
                 # Convert cropped np arrary to fastai img for learner
                 crop_img = Image.fromarray(crop_img)
-                crop_img.save("data/training/temp/_.jpeg") 
-                crop_img = open_image("data/training/temp/_.jpeg")  # not proud
+                crop_img.save("data/training/temp/_.jpeg")
+                crop_img = open_image("data/training/temp/_.jpeg")  # not elegent
                 
                 # Send to classifier
                 b_pred, pred_idx, outputs = learn.predict(crop_img)
-                
                 # ======================================================================== #
-                
+    
                 box_w = x2 - x1
                 box_h = y2 - y1
                 color = bbox_colors[int(np.where(unique_labels == int(cls_pred))[0])]
@@ -171,10 +170,8 @@ def detector(opt, **kwargs):
                     color="white",
                     verticalalignment="top",
                     bbox={"color": color, "pad": 0})
-                
 
-                
-                
+                print(f"\t[Det {det_i}]\t+ Prediction: {classes[int(cls_pred)]} ({cls_conf.item():.3f}) {b_pred}")
 
         # Save generated image with detections
         plt.axis("off")
@@ -186,12 +183,5 @@ def detector(opt, **kwargs):
         if opt.show_img:
             plt.show()
         #plt.close()
-        
-        
-        
-        
-        
-       
-        
-    
+
     return imgs, img_detections
