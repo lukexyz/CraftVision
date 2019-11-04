@@ -4,12 +4,12 @@
   <img src="https://github.com/lukexyz/CraftVision/blob/master/output/assortment_0c.png?raw=true">
 </p>
 
-Identify craft beers and display their BeerAdvocate rating ★★★★☆
+Identify craft beers and their BeerAdvocate rating ★★★★☆
 
 #### Methodology
 
 1. A `YOLOv3` first pass is used to segment classes
-2. Bottles are sent to a custom `ResNet` classifier, fine-tuned on a final craft beer dataset (pre-trained on imagenet)
+2. Bottles are sent to a custom `ResNet` classifier, fine-tuned on a custom label dataset (pre-trained on imagenet)
 3. Displays `BeerAdvocate.com` ratings in an `OpenCV` overlay.
 
 :notebook_with_decorative_cover: See [nb_controller.ipynb](/nb_controller.ipynb) for notebook 
@@ -40,7 +40,7 @@ Access notebooks through a browser with the aws public IPv4 address (found in ec
     http://<public IP>:8888/?token=<paste token here>
 
 
-# Development Notes
+## Development Notes
 1. :white_check_mark: Get Fastai custom dataset trained for labels
 2. :white_check_mark: Get YOLOv3 implementation running
 3. :white_check_mark: Extract bottle bounding boxing from YOLOv3 and send them to the brand classifier CNN
