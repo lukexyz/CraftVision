@@ -25,11 +25,10 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.ticker import NullLocator
 
-from fastai.vision import load_learner, open_image
+from fastai.vision import load_learner, open_image, ImageBBox
 from pathlib import Path
+from data.ratings import *
 
-# path = 'data/images/bottle.JPG'
-# img = np.array(Image.open(path))
 
 def detector(opt, **kwargs):
     """
@@ -113,17 +112,17 @@ def detector(opt, **kwargs):
 
     # Bounding-box colors
     cmap = plt.get_cmap("hsv")
-    colors = [cmap(i) for i in np.linspace(0, 1, 20)]
+    colors = [cmap(i) for i in np.linspace(0, 1, 10)]
 
     print("\nIterating images:")
     # Iterate through images and save plot of detections
     for img_i, (path, detections) in enumerate(zip(imgs, img_detections)):
 
-        print("(%d) Image: '%s'" % (img_i, path))
+        img = Image.open(path)
+        print(f"({img_i}) Image: '{path}' {img.size}")
 
         # Create plot
-        print(path)
-        img = np.array(Image.open(path))
+        img = np.array(img)
         plt.figure()
         fig, ax = plt.subplots(1)
         ax.imshow(img)
@@ -149,7 +148,7 @@ def detector(opt, **kwargs):
                 # Convert cropped np arrary to fastai img for learner
                 crop_img = Image.fromarray(crop_img)
                 crop_img.save("data/training/temp/_.jpeg")
-                crop_img = open_image("data/training/temp/_.jpeg")  # not elegent
+                crop_img = open_image("data/training/temp/_.jpeg")
                 
                 # Send to classifier
                 b_pred, pred_idx, outputs = learn.predict(crop_img)
@@ -158,19 +157,40 @@ def detector(opt, **kwargs):
                 box_w = x2 - x1
                 box_h = y2 - y1
                 color = bbox_colors[int(np.where(unique_labels == int(cls_pred))[0])]
+                color = (0.0, 0.2562523625023627, 1.0, 1.0) # blue
+                c2 = (0.0, 1.0, 0.617278533938476, 1.0)     # cyan
+
+                # Add label
+                label_name = f"{str(b_pred).replace('_', ' ')}"
+                rating = get_rating(label_name)
+                title = f"{label_name}\n{rating}" 
+                title = f'{label_name}\n"{rating[1]}" ({rating[3]} reviews)'
+
                 # Create a Rectangle patch
-                bbox = patches.Rectangle((x1, y1), box_w, box_h, linewidth=2, edgecolor=color, facecolor="none")
+                bbox = patches.Rectangle((x1, y1), box_w, box_h, linewidth=4, edgecolor='blue', facecolor="none")
+                bbox2 = patches.Rectangle((x1, y1), box_w, box_h, linewidth=2, edgecolor=c2, facecolor="none")
+
                 # Add the bbox to the plot
                 ax.add_patch(bbox)
-                # Add label
-                plt.text(
-                    x1,
-                    y1,
-                    s = str(det_i) + "." + classes[int(cls_pred)] + '\n' + str(b_pred),
-                    color="white",
-                    verticalalignment="top",
-                    bbox={"color": color, "pad": 0})
+                ax.add_patch(bbox2)
 
+                plt.text(x1, y1,
+                         s = title,
+                         color="white",
+                         verticalalignment="top",
+                         bbox=dict(facecolor=color, edgecolor='blue', pad=3, alpha=0.8, boxstyle='round,pad=0.5'))
+                
+                # Review score label
+                score_x = x1 + 15
+                score_y2 = y2 - 80
+                score_str = f"{rating[0]}%"
+
+                plt.text(score_x, score_y2,
+                         s = score_str,
+                         color="white",
+                         verticalalignment="top",
+                         bbox=dict(facecolor=color, edgecolor='blue', pad=0, alpha=0.8, boxstyle='Circle,pad=0.01'))
+                
                 print(f"\t[Det {det_i}]\t+ Prediction: {classes[int(cls_pred)]} ({cls_conf.item():.3f}) {b_pred}")
 
         # Save generated image with detections
