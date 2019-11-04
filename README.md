@@ -4,16 +4,15 @@
 
 # :camera: CraftVision
 
-Identify craft beers and dipslay their BeerAdvocate rating ★★★★☆
+Identify craft beers and display their BeerAdvocate rating ★★★★☆
 
-#### Method
+#### Methodology
 
 1. A `YOLOv3` first pass is used to segment classes
-2. Bottles and sent to a custom `ResNet` classifier, fine-tuned on a curated craft beer dataset (pre-trained on imagenet)
-3. Identifies and displays `BeerAdvocate.com` ratings in an `OpenCV` overlay.
+2. Bottles are sent to a custom `ResNet` classifier, fine-tuned on a final craft beer dataset (pre-trained on imagenet)
+3. Displays `BeerAdvocate.com` ratings in an `OpenCV` overlay.
 
-See CraftVision/nb_controller.ipynb for notebook
-See CraftVision/detector.py for pytorch code
+See CraftVision/[nb_controller.ipynb](/nb_controller.ipynb) for notebook
 
 ## Installation from AWS
 `Deep Learning AMI (Ubuntu) Version 22.0`, GPU `p2.xlarge` for training :ballot_box_with_check:, `100 GB`
