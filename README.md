@@ -12,9 +12,11 @@ Identify craft beers and their BeerAdvocate rating ★★★★☆
 2. Bottles are sent to a custom `ResNet` classifier, fine-tuned on a custom label dataset (pre-trained on imagenet)
 3. Displays `BeerAdvocate.com` ratings in an `OpenCV` overlay.
 
-:notebook_with_decorative_cover: See [nb_controller.ipynb](/nb_controller.ipynb) for notebook 
+  → :notebook_with_decorative_cover: See [nb_controller.ipynb](/nb_controller.ipynb) for notebook 
 
-:bookmark_tabs: See CraftVision/[detector.py](/detector.py) for inference code
+  → :chart_with_downwards_trend: Training and hyperparameters are in [02_Dataset_and_training.ipynb](notebooks/02_Dataset_and_training.ipynb)
+
+  → :bookmark_tabs: CraftVision/[detector.py](/detector.py) for inference code
 
 ## Installation from AWS
 `Deep Learning AMI (Ubuntu) Version 22.0`, GPU `p2.xlarge` for training :ballot_box_with_check:, `100 GB`
