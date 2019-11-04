@@ -121,10 +121,14 @@ def detector(opt, **kwargs):
         img = Image.open(path)
         print(f"({img_i}) Image: '{path}' {img.size}")
 
+        # Configure output resolution
+        dpi = 60
+        height, width = img.size
+        figsize = width / float(dpi), height / float(dpi)
         # Create plot
         img = np.array(img)
-        plt.figure()
-        fig, ax = plt.subplots(1)
+        # plt.figure(figsize=figsize)
+        fig, ax = plt.subplots(1, figsize=figsize)
         ax.imshow(img)
 
         # Draw bounding boxes and labels of detections
@@ -178,18 +182,18 @@ def detector(opt, **kwargs):
                          s = title,
                          color="white",
                          verticalalignment="top",
-                         bbox=dict(facecolor=color, edgecolor='blue', pad=3, alpha=0.8, boxstyle='round,pad=0.5'))
+                         bbox=dict(facecolor=color, edgecolor='blue', pad=3, alpha=0.9, boxstyle='round,pad=0.5'))
                 
                 # Review score label
-                score_x = x1 + 15
-                score_y2 = y2 - 80
+                score_x = x1 + 10
+                score_y2 = y2 - 40
                 score_str = f"{rating[0]}%"
 
                 plt.text(score_x, score_y2,
                          s = score_str,
                          color="white",
                          verticalalignment="top",
-                         bbox=dict(facecolor=color, edgecolor='blue', pad=0, alpha=0.8, boxstyle='Circle,pad=0.01'))
+                         bbox=dict(facecolor=color, edgecolor='blue', pad=0, alpha=0.8, boxstyle='Circle,pad=0.1'))
                 
                 print(f"\t[Det {det_i}]\t+ Prediction: {classes[int(cls_pred)]} ({cls_conf.item():.3f}) {b_pred}")
 
