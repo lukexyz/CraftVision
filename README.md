@@ -12,7 +12,9 @@ Identify craft beers and display their BeerAdvocate rating ★★★★☆
 2. Bottles are sent to a custom `ResNet` classifier, fine-tuned on a final craft beer dataset (pre-trained on imagenet)
 3. Displays `BeerAdvocate.com` ratings in an `OpenCV` overlay.
 
-See CraftVision/[nb_controller.ipynb](/nb_controller.ipynb) for notebook
+:notebook_with_decorative_cover: See CraftVision/[nb_controller.ipynb](/nb_controller.ipynb) for notebook 
+
+:bookmark_tabs: See CraftVision/[detector.py](/detector.py) for inference code
 
 ## Installation from AWS
 `Deep Learning AMI (Ubuntu) Version 22.0`, GPU `p2.xlarge` for training :ballot_box_with_check:, `100 GB`
@@ -46,6 +48,8 @@ Access notebooks through a browser with the aws public IPv4 address (found in ec
 5. :white_check_mark: Run on saved video and tune up for real-time stream later
 6. :white_check_mark: Improve HUD visuals when critic score is returned and displayed about beverage
     - Resize image output so text is readable
+7. Increase number of brands
+8. Refactor `detector` to run on a frame stream
 
 <p align="center">
   <img src="https://github.com/lukexyz/CraftVision/blob/master/data/video/craft-vid-crop.gif?raw=true">
