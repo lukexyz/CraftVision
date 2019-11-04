@@ -1,8 +1,8 @@
+# :camera: CraftVision
+
 <p align="center">
   <img src="https://github.com/lukexyz/CraftVision/blob/master/output/assortment_0c.png?raw=true">
 </p>
-
-# :camera: CraftVision
 
 Identify craft beers and display their BeerAdvocate rating ★★★★☆
 
@@ -12,7 +12,7 @@ Identify craft beers and display their BeerAdvocate rating ★★★★☆
 2. Bottles are sent to a custom `ResNet` classifier, fine-tuned on a final craft beer dataset (pre-trained on imagenet)
 3. Displays `BeerAdvocate.com` ratings in an `OpenCV` overlay.
 
-:notebook_with_decorative_cover: See CraftVision/[nb_controller.ipynb](/nb_controller.ipynb) for notebook 
+:notebook_with_decorative_cover: See [nb_controller.ipynb](/nb_controller.ipynb) for notebook 
 
 :bookmark_tabs: See CraftVision/[detector.py](/detector.py) for inference code
 
