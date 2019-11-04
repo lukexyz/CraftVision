@@ -45,13 +45,14 @@ Access notebooks through a browser with the aws public IPv4 address (found in ec
 ## Development Notes
 1. :white_check_mark: Get Fastai custom dataset trained for labels
 2. :white_check_mark: Get YOLOv3 implementation running
-3. :white_check_mark: Extract bottle bounding boxing from YOLOv3 and send them to the brand classifier CNN
+3. :white_check_mark: Extract bottle bounding box from YOLOv3 and send them to the brand classifier CNN
 4. :white_check_mark: Run repo from `WSL` for development and use `aws` GPUs for training 
 5. :white_check_mark: Run on saved video and tune up for real-time stream later
 6. :white_check_mark: Improve HUD visuals when critic score is returned and displayed about beverage
     - Resize image output so text is readable
-7. Increase number of brands
-8. Refactor `detector` to run on a frame stream
+7. Increase number of brands → Run YoloV3 on training corpus to extract bottles before training
+8. Refactor `detector` to optimise for stream capture
+9. Upgrade segmentation model from YOLO to [detectron2](https://github.com/facebookresearch/detectron2)
 
 <p align="center">
   <img src="https://github.com/lukexyz/CraftVision/blob/master/data/video/craft-vid-crop.gif?raw=true">
