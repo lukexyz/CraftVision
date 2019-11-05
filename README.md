@@ -1,4 +1,4 @@
-# CraftVision :eyeglasses:
+# CraftVision :eyeglasses::speech_balloon: 
 
 <p align="center">
   <img src="https://github.com/lukexyz/CraftVision/blob/master/output/assortment_0c.png?raw=true">
