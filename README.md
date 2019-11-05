@@ -1,4 +1,4 @@
-# :camera::eyeglasses: CraftVision 
+# CraftVision :eyeglasses:
 
 <p align="center">
   <img src="https://github.com/lukexyz/CraftVision/blob/master/output/assortment_0c.png?raw=true">
@@ -11,6 +11,8 @@ Identify craft beers and show their BeerAdvocate rating ★★★★★
 1. A first pass segments classes using the `YOLOv3` model.
 2. Bottles are sent to a custom `ResNet34` classifier, fine-tuned on a custom label dataset (pre-trained on imagenet).
 3. Ratings from `BeerAdvocate` are collected and displayed with a `OpenCV` overlay.
+
+<br/>
 
 <p align="center">
   <img src="https://github.com/lukexyz/CraftVision/blob/master/output/Artboard_2.png?raw=true">
@@ -76,4 +78,3 @@ MIT License
 
 * [eriklindernoren/PyTorch-YOLOv3](https://github.com/eriklindernoren/PyTorch-YOLOv3)
 * [Jeremy Howard - Practical Deep Learning for Coders, v3 - Lesson 2](https://course.fast.ai/)
-
