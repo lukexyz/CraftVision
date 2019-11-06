@@ -1,18 +1,16 @@
 # CraftVision :eyeglasses::speech_balloon: 
 
+> *Judge not, that you be not judged. For with the judgment you pronounce you will be judged, and with the measure you use it will be measured to you. [Matthew 7:1-2](https://www.biblegateway.com/passage/?search=Matthew+7:1-2)*
+
+
 <p align="center">
   <img src="https://github.com/lukexyz/CraftVision/blob/master/output/assortment_0c.png?raw=true">
 </p>
 
-Ever been shunned for enjoying a sub-standard beverage?  
-
-Ever wondered whether your premium IPA was fresh and delicious — or simply your brain trying to desperately self-justify paying £6.50 for half a glass. Well, fear no longer.
+Ever been shunned for enjoying a sub-standard beverage? Ever wondered whether your premium IPA was fresh and delicious — or simply your brain trying to desperately self-justify paying £6.50 for half a glass. Well, fear no longer.
 
 Now with the wisdom of the crowd, you too can calibrate a uniquely typical palette for craft breweries with _CraftVision_.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Identify craft beers and pass the Critic's judgement` ★★★★★
-
----
-> *Judge not, that you be not judged. For with the judgment you pronounce you will be judged, and with the measure you use it will be measured to you. [Matthew 7:1-2](https://www.biblegateway.com/passage/?search=Matthew+7:1-2)*
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Identify craft beers that pass the Critic's judgement` ★★★★★
 
 ## Methodology
 
