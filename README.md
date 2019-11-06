@@ -4,9 +4,17 @@
   <img src="https://github.com/lukexyz/CraftVision/blob/master/output/assortment_0c.png?raw=true">
 </p>
 
-Identify craft beers and show their BeerAdvocate rating ★★★★★
+Ever been shunned for enjoying a sub-standard beverage?  
 
-### Methodology
+Ever wondered whether your premium IPA was fresh and delicious — or simply your brain trying to desperately self-justify paying £6.50 for half a glass. Well, fear no longer.
+
+Now with the wisdom of the crowd, you too can calibrate a uniquely typical palette for craft breweries with _CraftVision_.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Identify craft beers and pass the Critic's judgement` ★★★★★
+
+---
+> *Judge not, that you be not judged. For with the judgment you pronounce you will be judged, and with the measure you use it will be measured to you. [Matthew 7:1-2](https://www.biblegateway.com/passage/?search=Matthew+7:1-2)*
+
+## Methodology
 
 1. A first pass segments classes using the `YOLOv3` model.
 2. Bottles are sent to a custom `ResNet34` classifier, fine-tuned on a collated label dataset (pre-trained on imagenet).
