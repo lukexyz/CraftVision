@@ -9,7 +9,7 @@ Identify craft beers and show their BeerAdvocate rating ★★★★★
 ### Methodology
 
 1. A first pass segments classes using the `YOLOv3` model.
-2. Bottles are sent to a custom `ResNet34` classifier, fine-tuned on a custom label dataset (pre-trained on imagenet).
+2. Bottles are sent to a custom `ResNet34` classifier, fine-tuned on a collated label dataset (pre-trained on imagenet).
 3. Ratings from `BeerAdvocate` are collected and displayed with a `OpenCV` overlay.
 
 <br/>
