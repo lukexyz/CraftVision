@@ -9,8 +9,8 @@
 
 Ever accidentally enjoyed a sub-standard beverage? Ever wondered whether your premium IPA was fresh and delicious — or simply your brain trying to desperately justify the exuberant asking price? Well, fear no longer.
 
-Now with the wisdom of the crowd, you too can calibrate a uniquely typical palette for craft brews, with _CraftVision_.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`Identify craft beers that pass the Critic's judgement` ★★★★★
+Now with the wisdom of the crowd, you too can calibrate a uniquely typical palette for craft brews, with _CraftVision_.  
+`Identify craft beers that pass the Critic's judgement` ★★★★★
 
 ## Methodology
 
